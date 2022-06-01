@@ -1,9 +1,3 @@
-import re
-import sys
-import os
-import json
-import urllib3
-import xmltodict
 import logging
 from libs.engine import utils
 from libs.engine import odc
@@ -90,12 +84,12 @@ def add_iss_data(serial_number, **kwargs):
     return utils.add_iss_data(serial_number=serial_number, **kwargs)
 
 
-def odcserver(ip: str, family: str, serial: str, timeout=60):
+def odcserver(ip, family, serial_number, timeout=60):
     """
-    :param ip: ODC IP
-    :param family: ODC family
-    :param serial: Serial number UUT
-    :param timeout: Default timeout request ODC (60)s
+    Param: ip: (str|list): ODC IP
+           family: (str): ODC family
+           serial_number: (str): Serial number UUT
+           timeout: (inf): Default timeout request ODC (60)s
 
     Main Example:
         odc = lib.odcserver(ip, family, serial, timeout)
@@ -109,12 +103,12 @@ def odcserver(ip: str, family: str, serial: str, timeout=60):
 
     :return:
     """
-    return odc.ODCServer(ip=ip, family=family, serial=serial, timeout=timeout)
+    return odc.ODCServer(ip=ip, family=family, serial_number=serial_number, timeout=timeout)
 
 
 def get_xml_data(serial_number, **keyword):
     """
-    :param serial_number:
+    :param serial_number: Serial Number
     :param keyword:
     :return:
     """
